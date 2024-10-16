@@ -1,87 +1,33 @@
 <template>
-  <div class="item">
-    <i>
-      <slot name="icon"></slot>
-    </i>
-    <div class="details">
-      <h3>
+  <div
+    class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 p-4 relative"
+  >
+    <div class="relative">
+      <div
+        class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 shadow-md"
+      >
+        <slot name="icon"></slot>
+      </div>
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-20"
+      ></div>
+    </div>
+    <div class="flex-1 text-center md:text-left">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">
         <slot name="heading"></slot>
       </h3>
-      <slot></slot>
+      <div class="text-gray-600">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.item {
-  margin-top: 2rem;
-  display: flex;
-  position: relative;
-}
-
-.details {
-  flex: 1;
-  margin-left: 1rem;
-}
-
-i {
-  display: flex;
-  place-items: center;
-  place-content: center;
-  width: 32px;
-  height: 32px;
-
-  color: var(--color-text);
-}
-
-h3 {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-bottom: 0.4rem;
-  color: var(--color-heading);
-}
-
-@media (min-width: 1024px) {
-  .item {
-    margin-top: 0;
-    padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
-  }
-
-  i {
-    top: calc(50% - 25px);
-    left: -26px;
-    position: absolute;
-    border: 1px solid var(--color-border);
-    background: var(--color-background);
-    border-radius: 8px;
-    width: 50px;
-    height: 50px;
-  }
-
-  .item:before {
-    content: ' ';
-    border-left: 1px solid var(--color-border);
-    position: absolute;
-    left: 0;
-    bottom: calc(50% + 25px);
-    height: calc(50% - 25px);
-  }
-
-  .item:after {
-    content: ' ';
-    border-left: 1px solid var(--color-border);
-    position: absolute;
-    left: 0;
-    top: calc(50% + 25px);
-    height: calc(50% - 25px);
-  }
-
-  .item:first-of-type:before {
-    display: none;
-  }
-
-  .item:last-of-type:after {
-    display: none;
+@media (min-width: 768px) {
+  .flex-row::before {
+    content: "";
+    @apply absolute left-8 top-20 bottom-0 w-px bg-gray-200;
   }
 }
 </style>
